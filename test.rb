@@ -9,16 +9,18 @@ class Window < Gosu::Window
 		super
 		
 		self.caption = "camera test"
-		@background = Background.new(width, height)
-		@gamewidth = @background.level.size * 32
-		@cam = Camera.new(0,0,width,height)
-		@player = Player.new(width, height)
+
 		@tilesize = 32
         @new_press_return,  
         @new_press_left, 
         @new_press_right, 
         @new_press_space, 
         @new_press_escape = false
+
+		@background = Background.new(width, height, @tilesize)
+		@cam = Camera.new(0,0,width,height)
+		@player = Player.new(width, height)
+		
 	end
 
 	def collision

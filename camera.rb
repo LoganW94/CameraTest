@@ -10,14 +10,14 @@ class Camera
 	def update player
 		@player = player
 		@camx = @player.playerx - @screenwidth / 2 -16
-
+		@camy = @player.playery - @screenheight / 2 - 16
 	end
 
 	def draw level, window
-		@player.draw(window)
+		@player.draw(window, @camx, @camy)
 		level.each do |i|
 			if not i.x < @camx - 64 and not i.x+32 > @camx + @screenwidth + 64
-				i.draw(window)
+				i.draw(window, @camx, @camy)
 			end
 		end
 	end
