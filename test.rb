@@ -17,19 +17,35 @@ class Window < Gosu::Window
         @new_press_space, 
         @new_press_escape = false
 
-		@background = Background.new(width, height, @tilesize)
+		@background = Background.new(@tilesize)
 		@cam = Camera.new(0,0,width,height)
-		@player = Player.new(width, height)
+		@player = Player.new(width, height, @tilesize)
 		
 	end
 
 	def collision
 		@background.level.each do |t|
-			if @player.playery + @tilesize > t.y and @player.playery < t.y + @tilesize and @player.playerx < t.x + @tilesize and @player.playerx + @tilesize > t.x
-				@player.playery -= 1
-				t.color = Gosu::Color.argb(0xff_ff0000)
+			if @player.playery + @tilesize > t.y and 
+				@player.playery < t.y + @tilesize and 
+				@player.playerx < t.x + @tilesize and 
+				@player.playerx + @tilesize > t.x
+
+				if @player.playery + @tilesize > t.y 
+					@player.playery -= @player.gravity
+				end
+				if @player.playery < t.y + @tilesize
+
+				end
+				if @player.playerx < t.x + @tilesize
+
+				end
+				if @player.playerx + @tilesize > t.x
+
+				end
+
+				t.color = Gosu::Color.argb(0xff_ff0000) # red to see whose colliding
 			else
-				t.color = Gosu::Color.argb(0xff_00ffff) 
+				t.color = Gosu::Color.argb(0xff_00ffff) # cyan
 			end
 		end
 	end

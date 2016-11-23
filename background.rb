@@ -3,9 +3,7 @@ require_relative 'tile'
 class Background
 
 	attr_accessor :level
-	def initialize screenwidth, screenheight, tilesize
-			@screenwidth = screenwidth
-			@screenheight = screenheight
+	def initialize tilesize
 			@tilesize = tilesize
 			create_level
 	end
@@ -14,7 +12,7 @@ class Background
 		@level = []
 		x = 0
 		y = 500
-		for i in 0...30
+		for i in 0...40
 			tile = Tile.new(x,y,@tilesize)
 			@level << tile
 			x += @tilesize

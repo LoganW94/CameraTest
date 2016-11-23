@@ -10,6 +10,9 @@ class Tile
 	end
 
 	def draw window, camx, camy
-		window.draw_quad(@x - camx, @y - camy, @color, @tilesize + @x - camx, @y - camy, @color, @x - camx, @tilesize + @y - camy, @color, @tilesize + @x - camx, @tilesize + @y - camy, @color, 2, mode = :default)
+		window.draw_quad(@x - camx, @y - camy, @color, 
+			@tilesize + @x - camx, @y - camy, @color, 
+			@x - camx, @tilesize + @y - camy, @color, 
+			@tilesize + @x - camx, @tilesize + @y - camy, @color, 1, mode = :default)
 	end
 end
