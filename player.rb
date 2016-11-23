@@ -14,8 +14,6 @@ class Player
 		@playery += @gravity
 	end
 	def draw window, camx, camy
-		@playerx -= camx
-		@playery -= camy
-		window.draw_quad(@playerx, @playery, @color, @playerx + 32, @playery, @color, @playerx, @playery+ 32, @color, @playerx+ 32, @playery+ 32, @color, 3, mode = :default)
+		window.draw_quad(@playerx - camx, @playery - camy, @color, @playerx + 32 - camx, @playery - camy, @color, @playerx-camx, @playery+ 32 - camy, @color, @playerx+ 32 - camx, @playery+ 32 - camy, @color, 3, mode = :default)
 	end
 end

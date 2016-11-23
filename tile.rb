@@ -8,10 +8,8 @@ class Tile
 		@color = Gosu::Color.argb(0xff_00ffff)
 		@tilesize = tilesize
 	end
-	
+
 	def draw window, camx, camy
-		@x -= camx
-		@y -= camy
-		window.draw_quad(@x, @y, @color, @tilesize + @x, @y, @color, @x, @tilesize + @y, @color, @tilesize + @x, @tilesize + @y, @color, 2, mode = :default)
+		window.draw_quad(@x - camx, @y - camy, @color, @tilesize + @x - camx, @y - camy, @color, @x - camx, @tilesize + @y - camy, @color, @tilesize + @x - camx, @tilesize + @y - camy, @color, 2, mode = :default)
 	end
 end
