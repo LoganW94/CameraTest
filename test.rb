@@ -19,24 +19,15 @@ class Window < Gosu::Window
         @new_press_right, 
         @new_press_space, 
         @new_press_escape = false
-        @collide = false
 	end
 
 	def collision
 		@background.level.each do |t|
 			if @player.playery + @tilesize > t.y and @player.playery < t.y + @tilesize and @player.playerx < t.x + @tilesize and @player.playerx + @tilesize > t.x
-				@collide = true
 				@player.playery -= 1
 				t.color = Gosu::Color.argb(0xff_ff0000)
 			else
-				@collide = false
 				t.color = Gosu::Color.argb(0xff_00ffff) 
-			end
-
-			if @collide == true
-				
-			elsif @collide == false
-				
 			end
 		end
 	end

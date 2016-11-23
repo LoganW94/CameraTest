@@ -13,7 +13,7 @@ class Player
 	def update
 		@playery += @gravity
 	end
-	def draw window, x
-		window.draw_quad(x, @playery, @color, x+ 32, @playery, @color, x, @playery+ 32, @color, x+ 32, @playery+ 32, @color, 3, mode = :default)
+	def draw window
+		window.draw_quad(@playerx, @playery, @color, @playerx + 32, @playery, @color, @playerx, @playery+ 32, @color, @playerx+ 32, @playery+ 32, @color, 3, mode = :default)
 	end
 end

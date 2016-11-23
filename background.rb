@@ -9,9 +9,6 @@ class Background
 			create_level
 	end
 
-	def update
-	end
-
 	def create_level
 		@level = []
 		x = 0
