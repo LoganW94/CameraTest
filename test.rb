@@ -2,6 +2,8 @@ require 'Gosu'
 require_relative 'camera'
 require_relative 'player'
 require_relative 'background'
+require_relative 'collision'
+require_relative 'handler'
 
 class Window < Gosu::Window
 
@@ -15,46 +17,24 @@ class Window < Gosu::Window
         @new_press_left, 
         @new_press_right, 
         @new_press_space, 
-        @new_press_escape = false
+        @new_press_escape,
+        @canjump = false
 
 		@background = Background.new(@tilesize)
 		@cam = Camera.new(0,0,width,height)
 		@player = Player.new(width, height, @tilesize)
+		@collision_detect = Collision.new 
+		@handler = Handler.new(@background, @player)
+		@onground = false
+		@level = @background.level
 		
 	end
 
-	def collision
-		@background.level.each do |t|
-			if @player.playery + @tilesize > t.y and 
-				@player.playery < t.y + @tilesize and 
-				@player.playerx < t.x + @tilesize and 
-				@player.playerx + @tilesize > t.x
-
-				if @player.playery + @tilesize > t.y 
-					@player.playery -= @player.gravity
-				end
-				if @player.playery < t.y + @tilesize
-
-				end
-				if @player.playerx < t.x + @tilesize
-
-				end
-				if @player.playerx + @tilesize > t.x
-
-				end
-
-				t.color = Gosu::Color.argb(0xff_ff0000) # red to see whose colliding
-			else
-				t.color = Gosu::Color.argb(0xff_00ffff) # cyan
-			end
-		end
-	end
-
 	def update
+		@onground = @collision_detect.collide(@player, @level)
 		@player.update
-		collision
 		@cam.update(@player)
-
+		
 		if button_down?(Gosu::KbReturn) && @new_press_enter
                            
         end
@@ -71,7 +51,20 @@ class Window < Gosu::Window
         	self.close                   
         end
 
-		@enter, @up, @down, @left, @right, @space, @escape, @tab = false 	
+        if button_down?(Gosu::KbSpace) and @new_press_space and @onground == true
+        	@canjump = true
+        end
+        # move to player class
+        if @canjump == true and @player.jumpframes < @player.maxjframes
+        	@player.jump
+        	@player.jumpframes += 1
+        elsif @player.jumpframes >= @player.maxjframes
+        	@player.jumpframes = 0
+        	@canjump = false
+        	@onground = false
+        end		
+
+		@enter, @up, @down, @left, @right, @space, @escape = false 	
 		
 		@new_press_enter = !button_down?(Gosu::KbReturn)        
         @new_press_left = !button_down?(Gosu::KbLeft)

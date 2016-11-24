@@ -10,6 +10,10 @@ class Background
 
 	def create_level
 		@level = []
+		tile_1 = Tile.new(320, 468, @tilesize)
+		tile_2 = Tile.new(320, 436, @tilesize)
+		level << tile_1
+		level << tile_2
 		x = 0
 		y = 500
 		for i in 0...40
@@ -17,5 +21,6 @@ class Background
 			@level << tile
 			x += @tilesize
 		end
+
 	end
 end

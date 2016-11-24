@@ -1,3 +1,4 @@
+require_relative 'tile'
 
 class Camera
 	def initialize camx, camy, screenwidth, screenheight
@@ -19,6 +20,6 @@ class Camera
 			if not i.x < @camx - 64 and not i.x > @camx + @screenwidth + 64
 				i.draw(window, @camx, @camy)
 			end
-		end
+		end	
 	end
 end
