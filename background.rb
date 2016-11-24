@@ -3,9 +3,10 @@ require_relative 'tile'
 class Background
 
 	attr_accessor :level
-	def initialize tilesize
-			@tilesize = tilesize
-			create_level
+	def initialize tilesize, screenwidth
+		@screenwidth = screenwidth
+		@tilesize = tilesize
+		create_level
 	end
 
 	def create_level
@@ -21,6 +22,13 @@ class Background
 			@level << tile
 			x += @tilesize
 		end
+	end
 
+	def draw window, camx, camy
+		@level.each do |i|
+			if not i.x < camx - 64 and not i.x > camx + @screenwidth + 64
+				i.draw(window, camx, camy)
+			end
+		end	
 	end
 end

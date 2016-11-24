@@ -1,7 +1,10 @@
 class Collision
+
+	def initialize tilesize
+		@tilesize = tilesize
+	end
 	
 	def collide player, level
-		@tilesize = 32
 		level.each do |t|
 			if player.playery + @tilesize > t.y and 
 				player.playery < t.y + @tilesize and 

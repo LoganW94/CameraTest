@@ -14,12 +14,7 @@ class Camera
 		@camy = @player.playery - @screenheight / 2 - 16
 	end
 
-	def draw level, window
-		@player.draw(window, @camx, @camy)
-		level.each do |i|
-			if not i.x < @camx - 64 and not i.x > @camx + @screenwidth + 64
-				i.draw(window, @camx, @camy)
-			end
-		end	
+	def draw handler
+		handler.draw(@camx, @camy)
 	end
 end
