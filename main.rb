@@ -2,7 +2,6 @@ require 'Gosu'
 require_relative 'camera'
 require_relative 'handler'
 
-
 class Window < Gosu::Window
 
 	def initialize width = 800, height = 600, fullscreen = false
@@ -10,7 +9,7 @@ class Window < Gosu::Window
 	    self.caption = "camera test"
 
 	    @cam = Camera.new(0,0,width,height)
-	    @handler = Handler.new(@background, @player, self, width, height)
+	    @handler = Handler.new(self, width, height)
 	end
 
 	def update

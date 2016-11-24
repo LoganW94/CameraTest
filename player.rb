@@ -1,7 +1,7 @@
 require 'Gosu'
 
 class Player
-	attr_accessor :playerx, :playery, :speed, :gravity, :jumpframes, :maxjframes
+	attr_accessor :playerx, :playery, :speed, :gravity, :jumpframes, :maxjframes, :onground, :canjump
 
 	def initialize screenwidth, screenheight, tilesize
 		@playerx = screenwidth/2 - 16
@@ -16,6 +16,15 @@ class Player
 	end
 	def update
 		@playery += @gravity
+
+		if @canjump == true and @jumpframes < @maxjframes
+        	jump
+        	@jumpframes += 1
+        elsif @jumpframes >= @maxjframes
+        	@jumpframes = 0
+        	@canjump = false
+        	@onground = false
+        end
 	end
 
 	def jump

@@ -13,7 +13,7 @@ class Collision
 
 				if player.playery + @tilesize > t.y # ground collision
 					player.playery -= player.gravity
-					@onground = true
+					player.onground = true
 				end
 				if player.playery < t.y + @tilesize # top collision
 
@@ -30,6 +30,5 @@ class Collision
 				t.color = Gosu::Color.argb(0xff_00ffff) # cyan
 			end
 		end
-		return @onground
 	end
 end
