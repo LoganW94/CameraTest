@@ -8,7 +8,7 @@ class Window < Gosu::Window
 	    super
 	    self.caption = "camera test"
 
-	    @cam = Camera.new(0,0,width,height)
+	    @cam = Camera.new(0,0,width, height)
 	    @handler = Handler.new(self, width, height)
 	end
 
